@@ -57,7 +57,6 @@ match matchKeyword(char buf[]){
             continue;
         }
 
-        int j;
         theMatch.length = strlen(candid);
         theMatch.type = 1; 
         return theMatch;
