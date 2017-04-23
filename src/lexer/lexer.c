@@ -181,7 +181,7 @@ match matchSymbol(char buf[]){
     return theMatch;
 }
 
-match singlePunctuation(char buf[]){
+match matchSinglePunctuation(char buf[]){
     match theMatch;
     theMatch.type = 0; 
     theMatch.length = 0;

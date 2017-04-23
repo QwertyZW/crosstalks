@@ -157,79 +157,79 @@ static void isDigit_test(void **state){
 static void singlePunctation_test_null(void **state){
     (void) state; /* unused */
 
-    match m = singlePunctuation(0);
+    match m = matchSinglePunctuation(0);
     assert_int_equal(m.length, 0);
 }
 
 static void singlePunctation_test_empty(void **state){
     (void) state; /* unused */
 
-    match m = singlePunctuation("");
+    match m = matchSinglePunctuation("");
     assert_int_equal(m.length, 0);
 }
 
 static void singlePunctation_test(void **state){
     (void) state; /* unused */
 
-    match m = singlePunctuation("{");
+    match m = matchSinglePunctuation("{");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, KURLYOPEN);
-    m = singlePunctuation("}");
+    m = matchSinglePunctuation("}");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, KURLYCLOSE);
-    m = singlePunctuation("(");
+    m = matchSinglePunctuation("(");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, PARENOPEN);
-    m = singlePunctuation(")");
+    m = matchSinglePunctuation(")");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, PARENCLOSE);
-    m = singlePunctuation("[");
+    m = matchSinglePunctuation("[");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, SQUAREOPEN);
-    m = singlePunctuation("]");
+    m = matchSinglePunctuation("]");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, SQUARECLOSE);
-    m = singlePunctuation(",");
+    m = matchSinglePunctuation(",");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, COMMA);
-    m = singlePunctuation("-");
+    m = matchSinglePunctuation("-");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, MINUS);
-    m = singlePunctuation("+");
+    m = matchSinglePunctuation("+");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, PLUS);
-    m = singlePunctuation("/");
+    m = matchSinglePunctuation("/");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, DIV);
-    m = singlePunctuation("*");
+    m = matchSinglePunctuation("*");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, MULT);
-    m = singlePunctuation("~");
+    m = matchSinglePunctuation("~");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, TILDE);
-    m = singlePunctuation("!");
+    m = matchSinglePunctuation("!");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, EXC);
-    m = singlePunctuation("%");
+    m = matchSinglePunctuation("%");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, PERC);
-    m = singlePunctuation("^");
+    m = matchSinglePunctuation("^");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, XOR);
-    m = singlePunctuation("&");
+    m = matchSinglePunctuation("&");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, AMP);
-    m = singlePunctuation("|");
+    m = matchSinglePunctuation("|");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, OR);
-    m = singlePunctuation("=");
+    m = matchSinglePunctuation("=");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, EQ);
-    m = singlePunctuation("?");
+    m = matchSinglePunctuation("?");
     assert_int_equal(m.length, 1);
     assert_int_equal(m.type, BM);
 
-    m = singlePunctuation("haha");
+    m = matchSinglePunctuation("haha");
     assert_int_equal(m.length, 0);
 }
 
