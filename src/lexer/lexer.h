@@ -46,4 +46,49 @@ int isAlphaOrUnderscore(char x);
  */
 int isDigit(char x);
 
+/*
+ * @brief match punctuation
+ */
+match singlePunctuation(char buf[]);
+
+//TODO put this in the right place
+//TODO do something about name spacing this enum
+//tokens
+enum{
+    KWINT,
+    KWCHAR,
+    KWLONG,
+    KWVOID,
+    KWSHORT,
+    KWFOR,
+    KWIF,
+    KWWHILE,
+    KWELSE,
+    KWSWITCH,
+    KWCASE,
+    KWDEFAULT,
+    KWBREAK,
+    KWCONTINUE,
+    KURLYOPEN,
+    KURLYCLOSE,
+    PARENOPEN,
+    PARENCLOSE,
+    SQUAREOPEN,
+    SQUARECLOSE,
+    COMMA,
+    MINUS,
+    PLUS,
+    DIV,
+    MULT,
+    TILDE,
+    EXC,
+    PERC,
+    XOR,
+    AMP,
+    OR,
+    EQ,
+    BM
+};
+
+
 #endif

@@ -100,7 +100,7 @@ match matchSymbol(char buf[]){
     return theMatch;
 }
 
-match singlePunctiation(char buf[]){
+match singlePunctuation(char buf[]){
     match theMatch;
     theMatch.type = 0; 
     theMatch.length = 0;
@@ -113,70 +113,97 @@ match singlePunctiation(char buf[]){
 
     theMatch.length = 1;
     if (buf[0] == '{'){
+        theMatch.type = KURLYOPEN;
         return theMatch;
     }
 
     if (buf[0] == '}'){
+        theMatch.type = KURLYCLOSE;
         return theMatch;
     }
 
     if (buf[0] == '('){
+        theMatch.type = PARENOPEN;
         return theMatch;
     }
 
     if (buf[0] == ')'){
+        theMatch.type = PARENCLOSE;
+        return theMatch;
+    }
+
+    if (buf[0] == '['){
+        theMatch.type = SQUAREOPEN;
+        return theMatch;
+    }
+
+    if (buf[0] == ']'){
+        theMatch.type = SQUARECLOSE;
         return theMatch;
     }
 
     if (buf[0] == ','){
+        theMatch.type = COMMA;
         return theMatch;
     }
 
     if (buf[0] == '-'){
+        theMatch.type = MINUS;
         return theMatch;
     }
 
     if (buf[0] == '+'){
+        theMatch.type = PLUS;
         return theMatch;
     }
 
     if (buf[0] == '/'){
+        theMatch.type = DIV;
         return theMatch;
     }
 
     if (buf[0] == '*'){
+        theMatch.type = MULT;
         return theMatch;
     }
 
     if (buf[0] == '~'){
+        theMatch.type = TILDE;
         return theMatch;
     }
 
     if (buf[0] == '!'){
+        theMatch.type = EXC;
         return theMatch;
     }
 
     if (buf[0] == '%'){
+        theMatch.type = PERC;
         return theMatch;
     }
 
     if (buf[0] == '^'){
+        theMatch.type = XOR;
         return theMatch;
     }
 
     if (buf[0] == '&'){
+        theMatch.type = AMP;
         return theMatch;
     }
 
     if (buf[0] == '|'){
+        theMatch.type = OR;
         return theMatch;
     }
 
     if (buf[0] == '='){
+        theMatch.type = EQ;
         return theMatch;
     }
 
     if (buf[0] == '?'){
+        theMatch.type = BM;
         return theMatch;
     }
 
