@@ -66,6 +66,11 @@ match matchLiteral(char buf[]);
  */
 match singlePunctuation(char buf[]);
 
+/*
+ * @brief match whitespace
+ */
+match matchwhiteSpace(char buf[]);
+
 //TODO put this in the right place
 //TODO do something about name spacing this enum
 //tokens
