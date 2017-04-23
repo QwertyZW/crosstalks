@@ -301,6 +301,28 @@ static void matchLiteral_test(void **state){
     assert_int_equal(m.length, 6);
 }
 
+static void matchwhiteSpace_test_empty_and_null(void **state){
+    (void) state; /* unused */
+
+    match m = matchwhiteSpace("");
+    assert_int_equal(m.length, 0);
+    m = matchwhiteSpace(0);
+    assert_int_equal(m.length, 0);
+}
+
+static void matchwhiteSpace_test(void **state){
+    (void) state; /* unused */
+
+    match m = matchwhiteSpace(" ");
+    assert_int_equal(m.length, 1);
+    m = matchwhiteSpace("\t");
+    assert_int_equal(m.length, 1);
+    m = matchwhiteSpace("\r");
+    assert_int_equal(m.length, 1);
+    m = matchwhiteSpace("\n");
+    assert_int_equal(m.length, 1);
+}
+
 int main(void) {
     const struct CMUnitTest tests[] = {
         cmocka_unit_test(beginsWith_test_true),
@@ -330,7 +352,9 @@ int main(void) {
         cmocka_unit_test(matchString_test_empty_and_null),
         cmocka_unit_test(matchString_test),
         cmocka_unit_test(matchLiteral_test_empty_and_null),
-        cmocka_unit_test(matchLiteral_test)
+        cmocka_unit_test(matchLiteral_test),
+        cmocka_unit_test(matchwhiteSpace_test_empty_and_null),
+        cmocka_unit_test(matchwhiteSpace_test)
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);
