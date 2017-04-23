@@ -28,4 +28,12 @@ int beginsWith(char buf[], char candid[]);
  */
 match matchKeyword(char buf[]);
 
+/*
+ * @brief matches a symbol that begins with a-zA-Z and ends with a-zA-Z0-9*
+ * TODO: set return type 
+ * TODO: maybe deglobalize and parameterize theKeywords
+ *     probably not if we want to maintain the match func(buf) interface
+ */
+match matchSymbol(char buf[]);
+
 #endif

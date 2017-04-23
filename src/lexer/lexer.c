@@ -66,6 +66,41 @@ match matchKeyword(char buf[]){
     return theMatch;
 }
 
+int isAlphaOrUnderscore(char x){
+    return (x >= 'A' && x <= 'Z') || 
+            (x >= 'a' && x <= 'z') ||
+             x == '_';
+}
+
+int isDigit(char x){
+    return x <= '9' && x >= '0';
+}
+
+match matchSymbol(char buf[]){
+    match theMatch;
+    theMatch.type = 0; 
+    theMatch.length = 0;
+    if (buf == 0)
+        return theMatch;
+
+    if (strlen(buf) < 1)
+        return theMatch;
+    
+    if(!isAlphaOrUnderscore(buf[0]))
+        return theMatch;
+
+    int i;
+    for (i=0; i < strlen(buf); i++){
+        if(!(isAlphaOrUnderscore(buf[i]) || isDigit(buf[i])))
+            break;
+
+    }
+    theMatch.length = i;
+    // TODO set type
+    return theMatch;
+}
+
+
 /*
  * TODO: the idea is to go through all the matcher functions
  * that `implement` the matcher interface
