@@ -181,6 +181,27 @@ match matchSymbol(char buf[]){
     return theMatch;
 }
 
+match matchwhiteSpace(char buf[]){
+    match theMatch;
+    theMatch.type = 0; 
+    theMatch.length = 0;
+
+    if (buf == 0)
+        return theMatch;
+
+    if (strlen(buf) < 1)
+        return theMatch;
+
+    int i;
+    for(i = 0; i < strlen(buf); i++){
+        if(buf[i] != '\n' && buf[i] != '\t' && buf[i] != ' ' && buf[i] != '\r')
+            break;
+    }
+
+    theMatch.length = 0;
+    return theMatch;
+}
+
 match matchSinglePunctuation(char buf[]){
     match theMatch;
     theMatch.type = 0; 
