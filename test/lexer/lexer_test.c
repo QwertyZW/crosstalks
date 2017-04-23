@@ -254,6 +254,51 @@ static void matchComment_test(void **state){
 
     m = matchComment("/* a comment */");
     assert_int_equal(m.length, 15);
+
+    m = matchComment("/**/");
+    assert_int_equal(m.length, 4);
+}
+
+static void matchString_test_empty_and_null(void **state){
+    (void) state; /* unused */
+
+    match m = matchString("");
+    assert_int_equal(m.length, 0);
+    m = matchString(0);
+    assert_int_equal(m.length, 0);
+    m = matchString("\"");
+    assert_int_equal(m.length, 0);
+}
+
+static void matchString_test(void **state){
+    (void) state; /* unused */
+
+    match m = matchString("\"\"");
+    assert_int_equal(m.length, 2);
+
+    m = matchString("\"this is a string\"");
+    assert_int_equal(m.length, 18);
+}
+
+static void matchLiteral_test_empty_and_null(void **state){
+    (void) state; /* unused */
+
+    match m = matchString("");
+    assert_int_equal(m.length, 0);
+    m = matchString(0);
+    assert_int_equal(m.length, 0);
+    m = matchString("'");
+    assert_int_equal(m.length, 0);
+}
+
+static void matchLiteral_test(void **state){
+    (void) state; /* unused */
+
+    match m = matchLiteral("''");
+    assert_int_equal(m.length, 2);
+
+    m = matchLiteral("'haha'");
+    assert_int_equal(m.length, 6);
 }
 
 int main(void) {
@@ -281,7 +326,9 @@ int main(void) {
         cmocka_unit_test(singlePunctation_test_empty),
         cmocka_unit_test(singlePunctation_test),
         cmocka_unit_test(matchComment_test_empty_and_null),
-        cmocka_unit_test(matchComment_test)
+        cmocka_unit_test(matchComment_test),
+        cmocka_unit_test(matchString_test_empty_and_null),
+        cmocka_unit_test(matchString_test)
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);
