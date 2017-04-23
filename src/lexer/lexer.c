@@ -76,6 +76,33 @@ int isDigit(char x){
     return x <= '9' && x >= '0';
 }
 
+match matchComment(char buf[]){
+    match theMatch;
+    theMatch.type = 0; 
+    theMatch.length = 0;
+
+    if (buf == 0)
+        return theMatch;
+
+    if (strlen(buf) < 2)
+        return theMatch;
+
+    if(!beginsWith(buf, "/*"))
+        return theMatch;
+    
+    int i;
+    for(i=1; i < strlen(buf); i++){
+        if(buf[i-1] == '*' && buf[i] == '/'){
+            // shouldn't require a type for this
+            // just eat it
+            theMatch.length = i+1;
+            return theMatch;
+        }
+    }
+
+    return theMatch;
+}
+
 match matchSymbol(char buf[]){
     match theMatch;
     theMatch.type = 0; 

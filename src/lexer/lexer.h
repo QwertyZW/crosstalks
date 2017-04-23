@@ -47,6 +47,11 @@ int isAlphaOrUnderscore(char x);
 int isDigit(char x);
 
 /*
+ * @brief match a comment
+ */
+match matchComment(char buf[]);
+
+/*
  * @brief match punctuation
  */
 match singlePunctuation(char buf[]);
