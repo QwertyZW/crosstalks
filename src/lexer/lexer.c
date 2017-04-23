@@ -1,6 +1,8 @@
 #include "lexer.h"
-
-//TODO maybe rollout homemade strlen
+/* 
+ * TODO Implement escaping
+ */
+// maybe TODO maybe rollout homemade strlen
 
 /* 
  * An array of keywords
