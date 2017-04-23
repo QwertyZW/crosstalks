@@ -30,8 +30,9 @@ char* intMatch[] = {
                     };
 
 /*
- * matches keyword int(for now) from given buffer
+ * matches a keyword from the array above
  * return length of matched keyword
+ * TODO: set return type 
  */
 match matchKeyword(char buf[]){
     match theMatch;
