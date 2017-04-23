@@ -36,4 +36,14 @@ match matchKeyword(char buf[]);
  */
 match matchSymbol(char buf[]);
 
+/*
+ * @brief check if given char is alpha or underscore
+ */
+int isAlphaOrUnderscore(char x);
+
+/*
+ * @brief check if given char is digit
+ */
+int isDigit(char x);
+
 #endif
