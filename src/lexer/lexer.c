@@ -198,7 +198,7 @@ match matchwhiteSpace(char buf[]){
             break;
     }
 
-    theMatch.length = 0;
+    theMatch.length = i;
     return theMatch;
 }
 
