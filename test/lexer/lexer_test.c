@@ -97,30 +97,35 @@ static void matchKeyword_test_null(void **state) {
 }
 
 static void matchSymbol_test_1char_alpha(void **state){
-
+    (void) state; /* unused */
+    
     match x = matchSymbol("a symbol");
     assert_int_equal(x.length, 1);
 }
 
 static void matchSymbol_test_1char_digit(void **state){
+    (void) state; /* unused */
 
     match x = matchSymbol("1 symbol");
     assert_int_equal(x.length, 0);
 }
 
 static void matchSymbol_test_mulchar(void **state){
+    (void) state; /* unused */
 
     match x = matchSymbol("abc1 symbol");
     assert_int_equal(x.length, 4);
 }
 
 static void matchSymbol_test_null(void **state){
+    (void) state; /* unused */
 
     match x = matchSymbol(0);
     assert_int_equal(x.length, 0);
 }
 
 static void matchSymbol_test_empty(void **state){
+    (void) state; /* unused */
 
     match x = matchSymbol("");
     assert_int_equal(x.length, 0);

@@ -100,6 +100,90 @@ match matchSymbol(char buf[]){
     return theMatch;
 }
 
+match singlePunctiation(char buf[]){
+    match theMatch;
+    theMatch.type = 0; 
+    theMatch.length = 0;
+
+    if (buf == 0)
+        return theMatch;
+
+    if (strlen(buf) < 1)
+        return theMatch;
+
+    theMatch.length = 1;
+    if (buf[0] == '{'){
+        return theMatch;
+    }
+
+    if (buf[0] == '}'){
+        return theMatch;
+    }
+
+    if (buf[0] == '('){
+        return theMatch;
+    }
+
+    if (buf[0] == ')'){
+        return theMatch;
+    }
+
+    if (buf[0] == ','){
+        return theMatch;
+    }
+
+    if (buf[0] == '-'){
+        return theMatch;
+    }
+
+    if (buf[0] == '+'){
+        return theMatch;
+    }
+
+    if (buf[0] == '/'){
+        return theMatch;
+    }
+
+    if (buf[0] == '*'){
+        return theMatch;
+    }
+
+    if (buf[0] == '~'){
+        return theMatch;
+    }
+
+    if (buf[0] == '!'){
+        return theMatch;
+    }
+
+    if (buf[0] == '%'){
+        return theMatch;
+    }
+
+    if (buf[0] == '^'){
+        return theMatch;
+    }
+
+    if (buf[0] == '&'){
+        return theMatch;
+    }
+
+    if (buf[0] == '|'){
+        return theMatch;
+    }
+
+    if (buf[0] == '='){
+        return theMatch;
+    }
+
+    if (buf[0] == '?'){
+        return theMatch;
+    }
+
+    theMatch.length = 0;
+    return theMatch;
+}
+
 
 /*
  * TODO: the idea is to go through all the matcher functions
