@@ -126,6 +126,29 @@ static void matchSymbol_test_empty(void **state){
     assert_int_equal(x.length, 0);
 }
 
+static void isAlphaOrUnderscore_test(void **state){
+    (void) state; /* unused */
+
+    assert_int_equal(isAlphaOrUnderscore('A'), 1);
+    assert_int_equal(isAlphaOrUnderscore('Z'), 1);
+    assert_int_equal(isAlphaOrUnderscore('a'), 1);
+    assert_int_equal(isAlphaOrUnderscore('z'), 1);
+    assert_int_equal(isAlphaOrUnderscore('_'), 1);
+    assert_int_equal(isAlphaOrUnderscore('G'), 1);
+    assert_int_equal(isAlphaOrUnderscore('g'), 1);
+    assert_int_equal(isAlphaOrUnderscore('-'), 0);
+    assert_int_equal(isAlphaOrUnderscore('5'), 0);
+}
+
+static void isDigit_test(void **state){
+    (void) state; /* unused */
+
+    assert_int_equal(isDigit('a'), 0);
+    assert_int_equal(isDigit('0'), 1);
+    assert_int_equal(isDigit('9'), 1);
+    assert_int_equal(isDigit('5'), 1);
+}
+
 int main(void) {
     const struct CMUnitTest tests[] = {
         cmocka_unit_test(beginsWith_test_true),
@@ -144,7 +167,9 @@ int main(void) {
         cmocka_unit_test(matchSymbol_test_1char_digit),
         cmocka_unit_test(matchSymbol_test_mulchar),
         cmocka_unit_test(matchSymbol_test_null),
-        cmocka_unit_test(matchSymbol_test_empty)
+        cmocka_unit_test(matchSymbol_test_empty),
+        cmocka_unit_test(isAlphaOrUnderscore_test),
+        cmocka_unit_test(isDigit_test)
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);
