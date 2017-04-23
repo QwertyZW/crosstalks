@@ -328,7 +328,9 @@ int main(void) {
         cmocka_unit_test(matchComment_test_empty_and_null),
         cmocka_unit_test(matchComment_test),
         cmocka_unit_test(matchString_test_empty_and_null),
-        cmocka_unit_test(matchString_test)
+        cmocka_unit_test(matchString_test),
+        cmocka_unit_test(matchLiteral_test_empty_and_null),
+        cmocka_unit_test(matchLiteral_test)
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);
