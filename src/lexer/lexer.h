@@ -64,7 +64,7 @@ match matchLiteral(char buf[]);
 /*
  * @brief match punctuation
  */
-match singlePunctuation(char buf[]);
+match matchSinglePunctuation(char buf[]);
 
 /*
  * @brief match whitespace
