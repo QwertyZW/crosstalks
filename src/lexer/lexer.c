@@ -103,6 +103,58 @@ match matchComment(char buf[]){
     return theMatch;
 }
 
+/* matchString and matchLiteral are mergable*/
+match matchString(char buf[]){
+    match theMatch;
+    theMatch.type = 0; 
+    theMatch.length = 0;
+
+    if (buf == 0)
+        return theMatch;
+
+    if (strlen(buf) < 1)
+        return theMatch;
+
+    if(!beginsWith(buf, "\""))
+        return theMatch;
+    
+    int i;
+    for(i=1; i < strlen(buf); i++){
+        if(buf[i] == '"'){
+            theMatch.length = i+1;
+            return theMatch;
+        }
+    }
+
+    return theMatch;
+}
+
+/* matchString and matchLiteral are mergable*/
+match matchLiteral(char buf[]){
+    match theMatch;
+    theMatch.type = 0; 
+    theMatch.length = 0;
+
+    if (buf == 0)
+        return theMatch;
+
+    if (strlen(buf) < 1)
+        return theMatch;
+
+    if(!beginsWith(buf, "'"))
+        return theMatch;
+    
+    int i;
+    for(i=1; i < strlen(buf); i++){
+        if(buf[i] == '\''){
+            theMatch.length = i+1;
+            return theMatch;
+        }
+    }
+
+    return theMatch;
+}
+
 match matchSymbol(char buf[]){
     match theMatch;
     theMatch.type = 0; 
