@@ -168,26 +168,6 @@ static void singlePunctation_test_empty(void **state){
     assert_int_equal(m.length, 0);
 }
 
-/* 
-    KURLYOPEN,
-    KURLYCLOSE,
-    PARENOPEN,
-    PARENCLOSE,
-    SQUAREOPEN,
-    SQUARECLOSE,
-    COMMA,
-    MINUS,
-    PLUS,
-    DIV,
-    MULT,
-    TILDE,
-    EXC,
-    PERC,
-    XOR,
-    AMP,
-    OR,
-    EQ,
-    BM*/
 static void singlePunctation_test(void **state){
     (void) state; /* unused */
 
