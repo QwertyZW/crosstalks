@@ -98,7 +98,7 @@ static void matchKeyword_test_null(void **state) {
 
 static void matchSymbol_test_1char_alpha(void **state){
     (void) state; /* unused */
-    
+
     match x = matchSymbol("a symbol");
     assert_int_equal(x.length, 1);
 }
@@ -154,6 +154,106 @@ static void isDigit_test(void **state){
     assert_int_equal(isDigit('5'), 1);
 }
 
+static void singlePunctation_test_null(void **state){
+    (void) state; /* unused */
+
+    match m = singlePunctuation(0);
+    assert_int_equal(m.length, 0);
+}
+
+static void singlePunctation_test_empty(void **state){
+    (void) state; /* unused */
+
+    match m = singlePunctuation("");
+    assert_int_equal(m.length, 0);
+}
+
+/* 
+    KURLYOPEN,
+    KURLYCLOSE,
+    PARENOPEN,
+    PARENCLOSE,
+    SQUAREOPEN,
+    SQUARECLOSE,
+    COMMA,
+    MINUS,
+    PLUS,
+    DIV,
+    MULT,
+    TILDE,
+    EXC,
+    PERC,
+    XOR,
+    AMP,
+    OR,
+    EQ,
+    BM*/
+static void singlePunctation_test(void **state){
+    (void) state; /* unused */
+
+    match m = singlePunctuation("{");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, KURLYOPEN);
+    m = singlePunctuation("}");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, KURLYCLOSE);
+    m = singlePunctuation("(");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, PARENOPEN);
+    m = singlePunctuation(")");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, PARENCLOSE);
+    m = singlePunctuation("[");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, SQUAREOPEN);
+    m = singlePunctuation("]");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, SQUARECLOSE);
+    m = singlePunctuation(",");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, COMMA);
+    m = singlePunctuation("-");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, MINUS);
+    m = singlePunctuation("+");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, PLUS);
+    m = singlePunctuation("/");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, DIV);
+    m = singlePunctuation("*");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, MULT);
+    m = singlePunctuation("~");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, TILDE);
+    m = singlePunctuation("!");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, EXC);
+    m = singlePunctuation("%");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, PERC);
+    m = singlePunctuation("^");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, XOR);
+    m = singlePunctuation("&");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, AMP);
+    m = singlePunctuation("|");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, OR);
+    m = singlePunctuation("=");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, EQ);
+    m = singlePunctuation("?");
+    assert_int_equal(m.length, 1);
+    assert_int_equal(m.type, BM);
+
+    m = singlePunctuation("haha");
+    assert_int_equal(m.length, 0);
+}
+
+
 int main(void) {
     const struct CMUnitTest tests[] = {
         cmocka_unit_test(beginsWith_test_true),
@@ -174,7 +274,10 @@ int main(void) {
         cmocka_unit_test(matchSymbol_test_null),
         cmocka_unit_test(matchSymbol_test_empty),
         cmocka_unit_test(isAlphaOrUnderscore_test),
-        cmocka_unit_test(isDigit_test)
+        cmocka_unit_test(isDigit_test),
+        cmocka_unit_test(singlePunctation_test_null),
+        cmocka_unit_test(singlePunctation_test_empty),
+        cmocka_unit_test(singlePunctation_test),
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);
