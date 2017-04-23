@@ -12,7 +12,7 @@ typedef struct{
 /* 
  * An array of keywords
  */
-char* intMatch[] = {
+char* theKeywords[] = {
                      "int", 
                      "char", 
                      "long", 
@@ -28,38 +28,38 @@ char* intMatch[] = {
                      "break",
                      "continue"
                     };
+/*
+ * Find if a string buf begins with a string candid
+ * Return 0 on false, length of candid on true
+ * TODO: care for \0
+ */
+int beginsWith(char buf[], char candid[]){
+    int x;
+    for (x = 0; x < strlen(buf) && x < strlen(candid); x++){
+        if(buf[x] == candid[x]){ 
+            continue;
+        }
+        return 0;
+    }
+    return strlen(candid);
+}
 
 /*
  * matches a keyword from the array above
  * return length of matched keyword
  * TODO: set return type 
+ * TODO: maybe deglobalize and parameterize theKeywords
  */
 match matchKeyword(char buf[]){
     match theMatch;
     theMatch.type = 0; 
     theMatch.length = 0;
     int i; 
-    for (i=0; i < sizeof(intMatch)/sizeof(intMatch[0]); i++){
-        
-        /* TODO put this in its own function and parameterize candid */
-        char* candid = intMatch[i];
-        int nomatch = 0;
-
-        int x;
-        for (x = 0; x < strlen(buf) && x < strlen(candid); x++){
-            if(buf[x] == candid[x]){ 
-                continue;
-            }else{
-                nomatch = 1;
-                break;
-            }
-        }
-        
-        if(nomatch){
+    for (i=0; i < sizeof(theKeywords)/sizeof(theKeywords[0]); i++){    
+        if(!beginsWith(buf, theKeywords[i])){
             continue;
         }
-
-        theMatch.length = strlen(candid);
+        theMatch.length = strlen(theKeywords[i]);
         theMatch.type = 1; 
         return theMatch;
     }
