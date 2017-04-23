@@ -233,6 +233,28 @@ static void singlePunctation_test(void **state){
     assert_int_equal(m.length, 0);
 }
 
+static void matchComment_test_empty_and_null(void **state){
+    (void) state; /* unused */
+
+    match m = matchComment("");
+    assert_int_equal(m.length, 0);
+    m = matchComment(0);
+    assert_int_equal(m.length, 0);
+    m = matchComment("/");
+    assert_int_equal(m.length, 0);
+    m = matchComment("/*");
+    assert_int_equal(m.length, 0);
+}
+
+static void matchComment_test(void **state){
+    (void) state; /* unused */
+
+    match m = matchComment("/* incomplete comment");
+    assert_int_equal(m.length, 0);
+
+    m = matchComment("/* a comment */");
+    assert_int_equal(m.length, 15);
+}
 
 int main(void) {
     const struct CMUnitTest tests[] = {
@@ -258,6 +280,8 @@ int main(void) {
         cmocka_unit_test(singlePunctation_test_null),
         cmocka_unit_test(singlePunctation_test_empty),
         cmocka_unit_test(singlePunctation_test),
+        cmocka_unit_test(matchComment_test_empty_and_null),
+        cmocka_unit_test(matchComment_test)
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);
