@@ -40,6 +40,8 @@ match matchKeyword(char buf[]){
     theMatch.length = 0;
     int i; 
     for (i=0; i < sizeof(intMatch)/sizeof(intMatch[0]); i++){
+        
+        /* TODO put this in its own function and parameterize candid */
         char* candid = intMatch[i];
         int nomatch = 0;
 
