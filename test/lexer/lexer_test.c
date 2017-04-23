@@ -321,6 +321,18 @@ static void matchwhiteSpace_test(void **state){
     assert_int_equal(m.length, 1);
     m = matchwhiteSpace("\n");
     assert_int_equal(m.length, 1);
+
+    // mult whitespace
+    m = matchwhiteSpace("        ");
+    assert_int_equal(m.length, 8);
+
+    // mix whitespace
+    m = matchwhiteSpace("        \n\t\n\t");
+    assert_int_equal(m.length, 12);
+
+    // no white space at start
+    m = matchwhiteSpace("ae cec");
+    assert_int_equal(m.length, 0);
 }
 
 int main(void) {
