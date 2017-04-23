@@ -52,6 +52,16 @@ int isDigit(char x);
 match matchComment(char buf[]);
 
 /*
+ * @brief match a string
+ */
+match matchString(char buf[]);
+
+/*
+ * @brief match a literal
+ */
+match matchLiteral(char buf[]);
+
+/*
  * @brief match punctuation
  */
 match singlePunctuation(char buf[]);
