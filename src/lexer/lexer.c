@@ -202,10 +202,36 @@ match matchwhiteSpace(char buf[]){
     return theMatch;
 }
 
+typedef struct{
+    char punct;
+    int type;
+}TcharIntEl;
+
 match matchSinglePunctuation(char buf[]){
     match theMatch;
     theMatch.type = 0; 
     theMatch.length = 0;
+    TcharIntEl puncmap[] = {
+        {'{', KURLYOPEN},
+        {'}', KURLYCLOSE},
+        {'(', PARENOPEN},
+        {')', PARENCLOSE},
+        {'[', SQUAREOPEN},
+        {']', SQUARECLOSE},
+        {',', COMMA},
+        {'-', MINUS},
+        {'+', PLUS},
+        {'/', DIV},
+        {'*', MULT},
+        {'~', TILDE},
+        {'!', EXC},
+        {'%', PERC},
+        {'^', XOR},
+        {'&', AMP},
+        {'|', OR},
+        {'=', EQ},
+        {'?', BM}
+    };
 
     if (buf == 0)
         return theMatch;
@@ -214,101 +240,13 @@ match matchSinglePunctuation(char buf[]){
         return theMatch;
 
     theMatch.length = 1;
-    if (buf[0] == '{'){
-        theMatch.type = KURLYOPEN;
-        return theMatch;
+    for(int i = 0; i < sizeof(puncmap)/sizeof(puncmap[0]); i++){
+        if(buf[0] == puncmap[i].punct){
+            theMatch.type = puncmap[i].type;
+            return theMatch;
+        }
     }
-
-    if (buf[0] == '}'){
-        theMatch.type = KURLYCLOSE;
-        return theMatch;
-    }
-
-    if (buf[0] == '('){
-        theMatch.type = PARENOPEN;
-        return theMatch;
-    }
-
-    if (buf[0] == ')'){
-        theMatch.type = PARENCLOSE;
-        return theMatch;
-    }
-
-    if (buf[0] == '['){
-        theMatch.type = SQUAREOPEN;
-        return theMatch;
-    }
-
-    if (buf[0] == ']'){
-        theMatch.type = SQUARECLOSE;
-        return theMatch;
-    }
-
-    if (buf[0] == ','){
-        theMatch.type = COMMA;
-        return theMatch;
-    }
-
-    if (buf[0] == '-'){
-        theMatch.type = MINUS;
-        return theMatch;
-    }
-
-    if (buf[0] == '+'){
-        theMatch.type = PLUS;
-        return theMatch;
-    }
-
-    if (buf[0] == '/'){
-        theMatch.type = DIV;
-        return theMatch;
-    }
-
-    if (buf[0] == '*'){
-        theMatch.type = MULT;
-        return theMatch;
-    }
-
-    if (buf[0] == '~'){
-        theMatch.type = TILDE;
-        return theMatch;
-    }
-
-    if (buf[0] == '!'){
-        theMatch.type = EXC;
-        return theMatch;
-    }
-
-    if (buf[0] == '%'){
-        theMatch.type = PERC;
-        return theMatch;
-    }
-
-    if (buf[0] == '^'){
-        theMatch.type = XOR;
-        return theMatch;
-    }
-
-    if (buf[0] == '&'){
-        theMatch.type = AMP;
-        return theMatch;
-    }
-
-    if (buf[0] == '|'){
-        theMatch.type = OR;
-        return theMatch;
-    }
-
-    if (buf[0] == '='){
-        theMatch.type = EQ;
-        return theMatch;
-    }
-
-    if (buf[0] == '?'){
-        theMatch.type = BM;
-        return theMatch;
-    }
-
+    
     theMatch.length = 0;
     return theMatch;
 }
