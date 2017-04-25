@@ -45,6 +45,10 @@ int beginsWith(char buf[], char candid[]){
     return strlen(candid);
 }
 
+int bufFail(char buf[]){
+    return buf == 0 || strlen(buf) < 1;
+}
+
 /*
  * matches a keyword from the array above
  * return length of matched keyword
@@ -83,10 +87,7 @@ match matchComment(char buf[]){
     theMatch.type = 0; 
     theMatch.length = 0;
 
-    if (buf == 0)
-        return theMatch;
-
-    if (strlen(buf) < 2)
+    if (bufFail(buf))
         return theMatch;
 
     if(!beginsWith(buf, "/*"))
@@ -111,10 +112,7 @@ match matchString(char buf[]){
     theMatch.type = 0; 
     theMatch.length = 0;
 
-    if (buf == 0)
-        return theMatch;
-
-    if (strlen(buf) < 1)
+    if (bufFail(buf))
         return theMatch;
 
     if(!beginsWith(buf, "\""))
@@ -137,10 +135,7 @@ match matchLiteral(char buf[]){
     theMatch.type = 0; 
     theMatch.length = 0;
 
-    if (buf == 0)
-        return theMatch;
-
-    if (strlen(buf) < 1)
+    if (bufFail(buf))
         return theMatch;
 
     if(!beginsWith(buf, "'"))
@@ -161,12 +156,10 @@ match matchSymbol(char buf[]){
     match theMatch;
     theMatch.type = 0; 
     theMatch.length = 0;
-    if (buf == 0)
+
+    if (bufFail(buf))
         return theMatch;
 
-    if (strlen(buf) < 1)
-        return theMatch;
-    
     if(!isAlphaOrUnderscore(buf[0]))
         return theMatch;
 
@@ -186,10 +179,7 @@ match matchwhiteSpace(char buf[]){
     theMatch.type = 0; 
     theMatch.length = 0;
 
-    if (buf == 0)
-        return theMatch;
-
-    if (strlen(buf) < 1)
+    if (bufFail(buf))
         return theMatch;
 
     int i;
@@ -233,10 +223,7 @@ match matchSinglePunctuation(char buf[]){
         {'?', BM}
     };
 
-    if (buf == 0)
-        return theMatch;
-
-    if (strlen(buf) < 1)
+    if (bufFail(buf))
         return theMatch;
 
     theMatch.length = 1;
