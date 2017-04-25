@@ -240,6 +240,8 @@ match matchSinglePunctuation(char buf[]){
         return theMatch;
 
     theMatch.length = 1;
+
+    /* TODO: we'de ideally be using a map here */
     for(int i = 0; i < sizeof(puncmap)/sizeof(puncmap[0]); i++){
         if(buf[0] == puncmap[i].punct){
             theMatch.type = puncmap[i].type;
